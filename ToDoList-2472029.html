@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List - 2472029</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        body {
+            background-color: rgb(116, 225, 252);
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        .container {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            background-color: white;
+            margin-top: 200px;
+            display: block;
+            width: 500px;
+            min-height: 600px;
+            border-radius: 20px;
+            margin-top: 100px;
+        }
+        .innercontainer {
+            margin-top: 150px;
+        }
+        .title {
+            font-size: x-large;
+            font-weight: bold;
+        }
+        #input {
+            width: 200px;
+            height: 25px;
+        }
+        .button {
+            background-color: rgb(255, 227, 135);
+            border-radius: 5px;
+            border: 1px solid rgb(0, 73, 92);
+            color: rgb(0, 73, 92);
+        }
+        .button:hover {
+            cursor: pointer;    
+            background-color: rgb(247, 208, 81);
+        }
+        #clear {
+            margin-top: 10px;
+        }
+
+        #todo-list-items {
+            margin-top: 30px;
+            padding: 0 10px 0; 
+        }
+
+        .todo-item {
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            text-align: center;
+            color: black;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="innercontainer">
+            <div class="title">My To-Do List</div>
+            <input id="input" type="text" placeholder="Add a new task">
+            <button class="button" id="add" value="add">add</button><br/>
+            <button class="button" id="clear" value="clear">clear</button>
+            <div id="todo-list-items"></div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#add').on('click', function() {
+                var taskText = $('#input').val().trim();
+
+                if (taskText === '') {
+                    return;
+                }
+
+                if ($('.todo-item').length >= 10) {
+                    alert('Maksimal 10 tugas telah tercapai!');
+                    return;
+                }
+
+                var newItem = $('<div>')
+                    .addClass('todo-item')
+                    .text(taskText);
+
+                $('#todo-list-items').append(newItem);
+
+                $('#input').val('');
+                checkBox.on('click', function() {
+                    $(this).closest('.todo-item-wrapper').remove();
+                });
+            });
+
+            $('#clear').on('click', function() {
+                $('#todo-list-items').empty();
+            });
+        });
+    </script>
+</body>
+</html>

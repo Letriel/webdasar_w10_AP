@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Follow the Line - 2472029</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        body {
+            font-size: xx-large;
+            font-weight: bold;
+        }
+        #container {
+            background-color: white;
+            border: 1px solid black;
+            display: flex;
+            flex-wrap: wrap;
+            width: 600px;
+        }
+        td {
+            background-color: white;
+            width: 100px;
+            height: 100px;
+        }
+        .finish:hover {
+            background-color: yellow;
+        }
+        .safe {
+            background-color: white;
+        }
+        .danger {
+            background-color: silver;
+        }
+        .safe:hover {
+            background-color: rgb(140, 255, 0);
+        }
+        .danger:hover {
+            background-color: red;
+        }
+        .start:hover {
+            background-color: turquoise;
+        }
+        .start {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <table cellspacing="0" cellpadding="5">
+            <tr>
+                <th id="box" class="finish" colspan="6">Finish</th>
+            </tr>
+            <tr>
+                <td id="box" class="safe"></td>
+                <td id="box" class="danger"></td>
+                <td id="box" class="danger"></td>
+                <td id="box" class="danger"></td>
+                <td id="box" class="danger"></td>
+                <td id="box" class="danger"></td>
+            </tr>
+            <tr>
+                <td id="box" class="safe"></td>
+                <td id="box" class="danger"></td>
+                <td id="box" class="danger"></td>
+                <td id="box" class="danger"></td>
+                <td id="box" class="danger"></td>
+                <td id="box" class="danger"></td>
+            </tr>
+            <tr>
+                <td id="box" class="safe"></td>
+                <td id="box" class="safe"></td>
+                <td id="box" class="safe"></td>
+                <td id="box" class="danger"></td>
+                <td id="box" class="danger"></td>
+                <td id="box" class="danger"></td>
+            </tr>
+            <tr>
+                <td id="box" class="danger"></td>
+                <td id="box" class="danger"></td>
+                <td id="box" class="safe"></td>
+                <td id="box" class="danger"></td>
+                <td id="box" class="danger"></td>
+                <td id="box" class="danger"></td>
+            </tr>
+            <tr>
+                <td id="box" class="danger"></td>
+                <td id="box" class="danger"></td>
+                <td id="box" class="safe"></td>
+                <td id="box" class="safe"></td>
+                <td id="box" class="safe"></td>
+                <td id="box" class="safe"></td>
+            </tr>
+            <tr>
+                <td id="box" class="start" colspan="6">Start</td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        let isOnPath = false;
+        let gameOver = false;
+
+        $(".safe").hover(function () {
+            if (!gameOver) isOnPath = true;
+        });
+
+        $(".danger").hover(function () {
+            if (!gameOver) {
+                alert("you lose!");
+                gameOver = true;
+            }
+        });
+
+        $(".finish").hover(function () {
+            if (isOnPath && !gameOver) {
+                alert("congrats!");
+                gameOver = true;
+            }
+        });
+    </script>
+</body>
+</html>

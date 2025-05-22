@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Box - 2472029</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: right;
+            margin: 20px;
+        }
+        .container {
+            width: 800px;
+            height: 600px;
+            border: 1px solid red;
+            position: relative;
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box"></div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            const $box = $('.box');
+            const $container = $('.container');
+
+            const BOX_SIZE = $box.width();
+            const MAX_COL = ($container.width() / BOX_SIZE)-1;
+            const MAX_ROW = ($container.height() / BOX_SIZE)-1;
+
+            const tot_duration = 2000;
+            const stepduration = tot_duration / 3;
+
+            const animateBox = () => { 
+                const randomcolumn = Math.floor(Math.random() * (MAX_COL+1));
+                const randomrow = Math.floor(Math.random() * (MAX_ROW+1));
+
+                const vertical = randomcolumn * BOX_SIZE;
+                const horizontal = randomrow * BOX_SIZE;
+
+                $box.animate({opacity: 0}, stepduration, () => {
+                    $box.css({ left: vertical + 'px', top: horizontal + 'px' });
+                })
+                .animate({opacity: 1}, stepduration, () => {
+                    setTimeout(animateBox, stepduration);
+                });
+            };
+            animateBox();
+        });
+    </script>
+</body>
+</html>
